@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You & I'm Sorry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #cbefff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      position: fixed; /* Set the body to fixed */
+      top: 0; /* Make sure it sticks to the top */
+      left: 0; /* Make sure it sticks to the left */
+      width: 100vw; /* Full width */
+      height: 100vh; /* Full height */
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 800px;
+      margin-top: 60px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #0077b6;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .heart {
+      font-size: 4rem;
+      color: #0096c7;
+      margin: 20px 0;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .forgive-btn {
+      margin-top: 30px;
+      background-color: #0077b6;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .forgive-btn:hover {
+      background-color: #0096c7;
+      transform: scale(1.05);
+    }
+
+    .forgive-btn:active {
+      transform: scale(0.95);
+    }
+
+    .surprise {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #surprise-img {
+      width: 600px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 1s ease, transform 0.8s ease, box-shadow 1s ease;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0);
+    }
+
+    /* Glowing effect when shown */
+    #surprise-img.show {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 40px 10px #80dbff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 30px 5px #80e1ff; }
+      100% { box-shadow: 0 0 60px 20px #66cfff; }
+    }
+
+    /* Floating hearts styles */
+    .heart-float {
+      position: absolute;
+      font-size: 3rem;
+      color: #ff69b4;
+      animation: float 5s ease-in infinite;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) scale(1.5);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">💙</div>
+    <h1>SORRY LOVE</h1>
+    <p>I'm sorry love I hope you can forgive me for what I did that annoyed you. I hope you can forgive me and don't ignore me. I don't want us to get to the point where we have to break up again. You know that I love you so much no matter what happens. I didn't do this just to get attention, I did this so you could forgive me, this is not a joke, I'm truly sorry and I hope you can see that I'm sincere, I was just carried away by emotion, sorry love.</p>
+    <button class="forgive-btn">Forgive Me 💖</button>
+  </div>
+
+  <div class="surprise">
+    <img src="1.jpg" alt="Surprise" id="surprise-img">
+    <audio id="surprise-sound" src="2.mp3"></audio>
+  </div>
+
+  <script>
+    document.querySelector('.forgive-btn').addEventListener('click', () => {
+      alert('Thank you and I love you love! 💖');
+
+      const img = document.getElementById('surprise-img');
+      const sound = document.getElementById('surprise-sound');
+
+      // Show the image with glow effect
+      img.classList.add('show');
+
+      // Play the sound if not already playing
+      if (sound.paused) {
+        sound.play();
+      }
+
+      // Create floating hearts continuously
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-float');
+        heart.innerText = '💙';
+
+        // Randomize the horizontal position and starting position at the bottom
+        heart.style.left = `${Math.random() * window.innerWidth}px`;
+        heart.style.bottom = `0px`;
+
+        // Add to the body
+        document.body.appendChild(heart);
+
+        // Remove the heart after animation ends
+        setTimeout(() => {
+          heart.remove();
+        }, 5000); // Match the duration of the animation
+      }, 300); // Create a new heart every 300ms
+    });
+  </script>
+
+</body>
+</html>
